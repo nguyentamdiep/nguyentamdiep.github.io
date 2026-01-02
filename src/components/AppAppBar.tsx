@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -32,10 +33,18 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    setOpen(false);
+  };
+ 
 
   return (
     <AppBar
@@ -53,16 +62,36 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" 
+              onClick={() => handleNavigation('/')}
+                sx={{
+                  fontWeight: location.pathname === '/' ? 'bold' : 'normal'
+                }}
+                >
                 Home
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small"
+              onClick={() => handleNavigation('/docs')}
+                sx={{
+                  fontWeight: location.pathname === '/docs' ? 'bold' : 'normal'
+                }}
+              >
                 Docs
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small"
+              onClick={() => handleNavigation('/blog')}
+                sx={{
+                  fontWeight: location.pathname === '/blog' ? 'bold' : 'normal'
+                }}
+              >
                 Blog
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small"
+              onClick={() => handleNavigation('/about')}
+                sx={{
+                  fontWeight: location.pathname === '/about' ? 'bold' : 'normal'
+                }}
+              >
                 About Me
               </Button>
               {/* <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
@@ -115,10 +144,12 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Home</MenuItem>
-                <MenuItem>Docs</MenuItem>
-                <MenuItem>Blog</MenuItem>
-                <MenuItem>About Me</MenuItem>
+                <MenuItem 
+                onClick={() => handleNavigation('/')}
+                >Home</MenuItem>
+                <MenuItem onClick={() => handleNavigation('/docs')}>Docs</MenuItem>
+                <MenuItem onClick={() => handleNavigation('/blog')}>Blog</MenuItem>
+                <MenuItem onClick={() => handleNavigation('/about')}>About Me</MenuItem>
                 {/* <MenuItem>FAQ</MenuItem>
                 <MenuItem>Blog</MenuItem> */}
                 <Divider sx={{ my: 3 }} />
