@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import App from './MarketingPage';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from './theme/AppTheme';
 import AppAppBar from './components/AppAppBar';
@@ -16,7 +16,7 @@ import AboutMe from './pages/AboutMe';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <BrowserRouter>
+      <HashRouter>
         <AppTheme>
           <CssBaseline enableColorScheme />
           <AppAppBar />
@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path="/about" element={<AboutMe />} />
           </Routes>
         </AppTheme>
-      </BrowserRouter>
+      </HashRouter>
     </StyledEngineProvider>
   </React.StrictMode>
 );

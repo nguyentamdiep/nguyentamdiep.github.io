@@ -6,5 +6,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: { 'process.env': {} },
-  base: '/'
+  base: '/',
+  publicDir: false
 });
