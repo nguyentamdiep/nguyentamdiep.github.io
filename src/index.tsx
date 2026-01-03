@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from './theme/AppTheme';
 import AppAppBar from './components/AppAppBar';
+import PasswordDialog from './components/PasswordDialog';
 import Home from './pages/Home';
 import Docs from './pages/Docs';
 import Blog from './pages/Blog';
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <HashRouter>
         <AppTheme>
           <CssBaseline enableColorScheme />
+          <PasswordDialog />
           <AppAppBar />
           <Routes>
             <Route path="/" element={<Home />} />
